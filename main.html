@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shapes</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .heading{
+            font-size: 30px;
+            text-align: center;
+        }
+        .circle, #demo{
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        input#circleInput,button#circleCreatebth{
+            padding: .5rem;
+            margin: 1rem;
+        }
+        #demo>div{
+            margin: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading">
+        <h1>Create shapes</h1>
+    </div>
+    <div class="shapediamentions">
+        <div class="circle">
+            <h3>Circle</h3>
+            <input id="circleInput" type="number" placeholder="radius" required>
+            <button id="circleCreatebth">Create circle</button>
+        </div>
+        <div id="demo">
+
+        </div>
+    </div>
+    <script>
+        // 'use strict mode';
+        let circleRadius = document.getElementById('circleInput');
+        let circleCreatebth = document.getElementById('circleCreatebth');
+        let Ouput = document.getElementById('demo');
+
+        console.log(circleRadius);
+
+        function findArea(r){
+            return Math.PI * r * r;
+        }
+        function findCircumference(r){
+            return 2 * Math.PI * r;
+        }
+        function findDiameter(r){
+            return 2 * r;
+        }
+        circleCreatebth.addEventListener('click', function(){
+            // console.log(circleRadius.value);
+            if(circleRadius.value){
+                // console.log('Area is',findArea(circleRadius.value));
+                // console.log('Circumference is',findCircumference(circleRadius.value));
+                // console.log('Diametera is',findDiameter(circleRadius.value));
+                let area = findArea(circleRadius.value);
+                let circumference = findCircumference(circleRadius.value);
+                let diameter = findDiameter(circleRadius.value);
+
+                let newElemant = document.createElement('div');
+                // console.dir(newElemant);
+                newElemant.setAttribute('style', `height: ${diameter}px; width: ${diameter}px; background-color:red; border-radius: 50%; display:flex;justify-content:center;flex-direction:column; font-size:100%`);
+                let content = `<h5 style="margin:0">Area Of circle:</h5><p style="margin:0">${area}</p><h5 style="margin:0">Circumference Of circle:</h5><p style="margin:0">${circumference}</p><h5 style="margin:0">Diameter Of circle:</h5><p style="margin:0">${diameter}</p><h5 style="margin:0">Radius Of circle:</h5><p style="margin:0">${circleRadius.value}</p>`;
+                let outputShapDetail = document.createElement('div');
+
+                outputShapDetail.innerHTML= content;
+
+                Ouput.appendChild(newElemant);
+                Ouput.appendChild(outputShapDetail);
+            }else{
+                alert("Please enter the value");
+            }
+        });
+    </script>
+</body>
+</html>
